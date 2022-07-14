@@ -1,19 +1,50 @@
-
 {% extends './layout.html' %}
 
 {% block content %}
-<div class="card text-center">
-    <div class="card-header">
-      Page 1
-    </div>
-    <div class="card-body">
-      <h5 class="card-title">Home Page</h5>
-      <p class="card-text">This is the home page content for your Fakebook.</p>
-      <a href="#" class="btn btn-primary">Click this button, just for fun</a>
-    </div>
-    <div class="card-footer text-muted">
-      Application founded 7/11/2022 &copy; Kyler Ramsey
-    </div>
-  </div>
-<!-- git push origin master --force -->
+<div class="container">
+    <h1>Home</h1>
+    <p>Welcome to LucasList, {{ user }}</p>
+
+    <form action="http://127.0.0.1:5000/api/car_post" method="POST" class="form-inline">
+        <div class="form-group mb-2 w-75 pr-3">
+          <label for="makeInput" class="sr-only">What's the make of your car?</label>
+          <input type="text" name="makeInput" class="form-control w-100" id="makeInput" placeholder="Make">
+        </div>
+        <div class="form-group mb-2 w-75 pr-3">
+            <label for="modelInput" class="sr-only">What's the model of your car?</label>
+            <input type="text" name="modelInput" class="form-control w-100" id="modelInput" placeholder="Model">
+          </div>
+          <div class="form-group mb-2 w-75 pr-3">
+            <label for="yearInput" class="sr-only">What's the year of your car?</label>
+            <input type="text" name="yearInput" class="form-control w-100" id="yearInput" placeholder="Year (MUST BE INTEGER)">
+          </div>
+          <div class="form-group mb-2 w-75 pr-3">
+            <label for="colorInput" class="sr-only">What's the color of your car?</label>
+            <input type="text" name="colorInput" class="form-control w-100" id="colorInput" placeholder="Color">
+          </div>
+          <div class="form-group mb-2 w-75 pr-3">
+            <label for="priceInput" class="sr-only">What's the price of your car?</label>
+            <input type="text" name="priceInput" class="form-control w-100" id="priceInput" placeholder="Price">
+          </div>
+        <button type="submit" class="btn btn-primary mb-2 w-25">Add Listing</button>
+      </form>
+
+      
+
+    {% for c in cars %}
+        <div class="card mb-2">
+            <div class="card-body">
+                <p>{{ c.make }}</p>
+                <p>{{ c.model }}</p>
+                <p>{{ c.year }}</p>
+                <p>{{ c.color }}</p>
+                <p>{{ c.price }}</p>
+            </div>
+            <div class="card-footer d-flex justify-content-between">
+                <span>{{ c.get_user().username }}</span>
+                <span>{{ c.date_created }}</span>
+            </div>
+        </div>
+    {% endfor %}
+</div>
 {% endblock content %}
