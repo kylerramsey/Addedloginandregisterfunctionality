@@ -2,17 +2,19 @@
 {% extends './layout.html' %}
 
 {% block content %}
-<div class="card text-center">
-    <div class="card-header">
-      Page 4
-    </div>
-    <div class="card-body">
-      <h5 class="card-title">Login Page</h5>
-      <p class="card-text">This is the login page content for your Fakebook.</p>
-      <a href="#" class="btn btn-primary">Click this button, just for fun</a>
-    </div>
-    <div class="card-footer text-muted">
-      Application founded 7/11/2022 &copy; Kyler Ramsey
-    </div>
-  </div>
+<div class="container">
+    <h1>Login</h1>
+    <form action="/auth/login" method="POST">
+        <div class="form-group">
+            <label for="inputEmail">Email Address</label>
+            <input type="email" class="form-control" name="inputEmail" id="inputEmail" aria-describedby="emailHelp">
+        </div>
+        <div class="form-group">
+            <label for="inputPassword">Password</label>
+            <input type="password" class="form-control" name="inputPassword" id="inputPassword">
+        </div>
+        <p>Don't have an account? <a href="{{ url_for('auth.register') }}">Register Here</a></p>
+        <button type="submit" class="btn btn-primary">Sign Up</button>
+    </form>
+</div>
 {% endblock content %}

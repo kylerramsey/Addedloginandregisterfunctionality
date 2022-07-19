@@ -3,7 +3,9 @@
 {% block content %}
 <div class="container">
     <h1>Home</h1>
+    {% if current_user.is_authenticated %}
     <p>Welcome to LucasList, {{ user }}</p>
+    {% endif %}
 
     <form action="http://127.0.0.1:5000/api/car_post" method="POST" class="form-inline">
         <div class="form-group mb-2 w-75 pr-3">
